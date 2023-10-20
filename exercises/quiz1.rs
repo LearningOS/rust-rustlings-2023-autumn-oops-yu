@@ -13,10 +13,16 @@
 //
 // No hints this time ;)
 
-// I AM NOT DONE
 
 // Put your function here!
-// fn calculate_price_of_apples {
+fn calculate_price_of_apples(number:u32) ->u32{
+   let howmuch= if number <= 40{
+        number*2
+    }else {
+        number
+    };
+    howmuch
+}
 
 // Don't modify this function!
 #[test]

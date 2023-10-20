@@ -3,9 +3,28 @@
 // Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 pub fn factorial(num: u64) -> u64 {
+    // if num<2{
+    //     1
+    // }else{
+    //     num*factorial(num-1)
+    // }
+    let con=num;
+    let mut num = num;
+    for i in 0..con{
+        if i==0{
+            num*=1
+            
+        }else{
+            num*=i
+        }
+    }
+    if num == 0 
+      { 1}
+    else
+       { num}
     // Complete this function to return the factorial of num
     // Do not use:
     // - return
