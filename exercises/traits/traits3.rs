@@ -9,14 +9,11 @@
 // hint.
 
 
-
 pub trait Licensed {
-    fn licensing_info(&self) -> String
-    {
+    fn licensing_info(&self) -> String {
         String::from("Some information")
     }
 }
-
 
 struct SomeSoftware {
     version_number: i32,
@@ -25,7 +22,6 @@ struct SomeSoftware {
 struct OtherSoftware {
     version_number: String,
 }
-
 
 impl Licensed for SomeSoftware {} // Don't edit this line
 impl Licensed for OtherSoftware {} // Don't edit this line

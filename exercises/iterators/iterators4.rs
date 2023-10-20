@@ -4,27 +4,7 @@
 // hint.
 
 
-
 pub fn factorial(num: u64) -> u64 {
-    // if num<2{
-    //     1
-    // }else{
-    //     num*factorial(num-1)
-    // }
-    let con=num;
-    let mut num = num;
-    for i in 0..con{
-        if i==0{
-            num*=1
-            
-        }else{
-            num*=i
-        }
-    }
-    if num == 0 
-      { 1}
-    else
-       { num}
     // Complete this function to return the factorial of num
     // Do not use:
     // - return
@@ -34,6 +14,7 @@ pub fn factorial(num: u64) -> u64 {
     // For an extra challenge, don't use:
     // - recursion
     // Execute `rustlings hint iterators4` for hints.
+    (1..=num).fold(1, |acc, x| acc * x)
 }
 
 #[cfg(test)]

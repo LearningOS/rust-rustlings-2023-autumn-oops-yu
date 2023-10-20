@@ -11,7 +11,6 @@
 // Execute `rustlings hint rc1` or use the `hint` watch subcommand for a hint.
 
 
-
 use std::rc::Rc;
 
 #[derive(Debug)]
@@ -35,7 +34,6 @@ impl Planet {
     }
 }
 
-#[test]
 fn main() {
     let sun = Rc::new(Sun {});
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference

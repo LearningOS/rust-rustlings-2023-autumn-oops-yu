@@ -8,8 +8,8 @@
 // hint.
 
 
-
-use std::sync::{Arc,Mutex};
+use std::sync::Arc;
+use std::sync::Mutex;
 use std::thread;
 use std::time::Duration;
 
@@ -25,16 +25,17 @@ fn main() {
         let handle = thread::spawn(move || {
             thread::sleep(Duration::from_millis(250));
             // TODO: You must take an action before you update a shared value
-            let mut x=status_shared.lock().unwrap();
-            x.jobs_completed += 1;
+            let mut status = status_shared.lock().unwrap();
+            status.jobs_completed += 1;
         });
         handles.push(handle);
     }
     for handle in handles {
-       handle.join().unwrap();
+        handle.join().unwrap();
         // TODO: Print the value of the JobStatus.jobs_completed. Did you notice
         // anything interesting in the output? Do you have to 'join' on all the
         // handles?
-        println!("jobs completed {}", status.lock().unwrap().jobs_completed);
+        let status = status.lock().unwrap();
+        println!("jobs completed {}", status.jobs_completed);
     }
 }

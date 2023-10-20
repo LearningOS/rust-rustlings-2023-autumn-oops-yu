@@ -31,17 +31,27 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: Vec<(String,Command)>) -> Vec<String> {
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
-        let mut output: Vec<String> = Vec::<String>::with_capacity(input.len());
+        let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
-            let applied_str = match command{
-                Command::Uppercase => string.to_uppercase(),
-                Command::Trim => string.trim().to_string(),
-                Command::Append(i) => format!("{}{}",string,"bar".repeat(*i))
-            };
-            output.push(applied_str);
+            match command {
+                Command::Uppercase => {
+                    output.push(string.to_uppercase());
+                }
+                Command::Trim => {
+                    output.push(string.trim().to_string());
+                }
+                Command::Append(times) => {
+                    let appended_string: String = std::iter::repeat("bar")
+                        .take(*times)
+                        .collect::<Vec<&str>>()
+                        .join("");
+                    output.push(format!("{}{}", string, appended_string));
+                }
+            }
+
         }
         output
     }

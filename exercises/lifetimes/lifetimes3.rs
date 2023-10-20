@@ -6,7 +6,6 @@
 // hint.
 
 
-
 struct Book<'a> {
     author: &'a str,
     title: &'a str,

@@ -9,7 +9,6 @@
 // hint.
 
 
-
 use std::thread;
 use std::time::{Duration, Instant};
 
@@ -26,8 +25,8 @@ fn main() {
 
     let mut results: Vec<u128> = vec![];
     for handle in handles {
-        results.push(handle.join().unwrap());
         // TODO: a struct is returned from thread::spawn, can you use it?
+        results.push(handle.join().unwrap());
     }
 
     if results.len() != 10 {

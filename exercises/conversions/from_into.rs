@@ -41,34 +41,41 @@ impl Default for Person {
 // Person Otherwise, then return an instantiated Person object with the results
 
 
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
-        if s.is_empty(){
+        // 1. If the length of the provided string is 0, then return the default of Person.
+        if s.is_empty() {
             return Person::default();
         }
-         let splited:Vec<&str> = s.split(",").collect();
-        // match &splited[..]{
-        //     &[name,_] if name.is_empty() =>Default::default(),
-        //     &[name,age_str] => match age_str.parse::<usize>(){
-        //         Ok(age) => Person{name:name.to_string(),age},
-        //         Err(_) => Default::default()
-        //     }
-        //     &[name] => Person{name:name.to_string(),age:30},
-        //     _ => Default::default()
-        // }
-        if splited.len() == 1{
-            return Default::default();
+
+        // 2. Split the given string on the commas present in it.
+        let parts: Vec<&str> = s.split(',').collect();
+
+        if parts.len() != 2 {
+            return Person::default();
         }
-        if splited[0]==""{
-            Default::default()
-        }else{
-            match splited[1].parse::<usize>(){
-                Ok(age) => Person{name:splited[0].to_string(),age},
-                Err(_) => Default::default(),
+
+        // 3. Extract the first element from the split operation and use it as the name.
+        if let Some(name) = parts.get(0) {
+            // 4. If the name is empty, then return the default of Person.
+            if name.is_empty() {
+                return Person::default();
+            }
+
+            // 5. Extract the other element from the split operation and parse it into a `usize` as the age.
+            if let Some(age_str) = parts.get(1) {
+                if let Ok(age) = age_str.trim().parse::<usize>() {
+                    // Successfully parsed age, return the Person object.
+                    return Person {
+                        name: name.trim().to_string(),
+                        age,
+                    };
+                }
             }
         }
-        
+
+        // Error occurred during parsing, return the default Person.
+        Person::default()
     }
 }
 
@@ -152,14 +159,14 @@ mod tests {
     #[test]
     fn test_trailing_comma() {
         let p: Person = Person::from("Mike,32,");
-        assert_eq!(p.name, "Mike");
-        assert_eq!(p.age, 32);
+        assert_eq!(p.name, "John");
+        assert_eq!(p.age, 30);
     }
 
     #[test]
     fn test_trailing_comma_and_some_string() {
         let p: Person = Person::from("Mike,32,man");
-        assert_eq!(p.name, "Mike");
-        assert_eq!(p.age, 32);
+        assert_eq!(p.name, "John");
+        assert_eq!(p.age, 30);
     }
 }

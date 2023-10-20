@@ -4,7 +4,6 @@
 // hint.
 
 
-
 #[rustfmt::skip]
 macro_rules! my_macro {
     () => {
